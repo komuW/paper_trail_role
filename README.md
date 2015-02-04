@@ -1,7 +1,7 @@
 papertrail
 =====
 
-This role installs and configures the papertrail remote_syslog2.
+This role installs and configures the papertrail remote_syslog2 (https://github.com/papertrail/remote_syslog2).
 
 
 Requirements
