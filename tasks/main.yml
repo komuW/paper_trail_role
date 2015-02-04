@@ -6,11 +6,11 @@
     #- add more packages here
 
 - name: get remote_syslog2 file
-  shell: wget --directory-prefix=/tmp remote_syslog2_32bit
+  shell: wget --directory-prefix=/tmp {{ remote_syslog2_32bit }}
   when: 32bitmachine
 
 - name: get remote_syslog2 file
-  shell: wget --directory-prefix=/tmp remote_syslog2_64bit
+  shell: wget --directory-prefix=/tmp {{ remote_syslog2_64bit }}
   when: not 32bitmachine
 
 - name: untar the remote_syslog
