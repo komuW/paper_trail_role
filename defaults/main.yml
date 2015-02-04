@@ -1,9 +1,15 @@
 ---
+remote_syslog2_32bit: "https://github.com/papertrail/remote_syslog2/releases/download/v0.13/remote_syslog_linux_386.tar.gz"
+remote_syslog2_64bit: "https://github.com/papertrail/remote_syslog2/releases/download/v0.13/remote_syslog_linux_amd64.tar.gz"
+
+# if installing on a 32bit machine, set this to true. else false
 32bitmachine: false
 
+# add your credentials from papertrail, in here
 HOST: logs.papertrailapp.com
 PORT: 514
 
+# add the logfiles/log directories you would like to monitor, in here
 logfiles:
   - /var/log/*.log
   - /var/log/mysqld.log
