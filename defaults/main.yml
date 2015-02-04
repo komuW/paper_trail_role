@@ -1,0 +1,9 @@
+---
+32bitmachine: false
+
+HOST: logs.papertrailapp.com
+PORT: 514
+
+logfiles:
+  - /var/log/*.log
+  - /var/log/mysqld.log

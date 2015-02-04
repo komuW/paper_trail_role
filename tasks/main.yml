@@ -1,0 +1,46 @@
+---
+- name: Install supervisor to manage papertrail
+  apt: pkg={{ item }} state=present
+  with_items:
+    - supervisor
+    #- add more packages here
+
+- name: get remote_syslog2 file
+  shell: wget --directory-prefix=/tmp remote_syslog2_32bit
+  when: 32bitmachine
+
+- name: get remote_syslog2 file
+  shell: wget --directory-prefix=/tmp remote_syslog2_64bit
+  when: not 32bitmachine
+
+- name: untar the remote_syslog
+  shell: tar xzf ./remote_syslog*.tar.gz chdir=/tmp
+
+- name: copy the remote_syslog to /usr/local/bin
+  shell: sudo cp ./remote_syslog /usr/local/bin chdir=/tmp
+
+- name: Copy the log_files.yml conf file
+  template: src=log_files.yml.j2 dest=/etc/log_files.yml
+  notify: 
+   - restart remote_syslog
+
+- name: Write supervisord.conf
+  template: dest=/etc/supervisor/supervisord.conf
+            src=supervisord.conf.j2
+            backup=yes
+  notify: update main supervisor
+
+- name: Link to remote_syslog specific supervisor configuration
+  template: src=remote_syslog_supervisord.conf.j2 dest=/etc/supervisor/conf.d/remote_syslog.conf
+  notify: update remote_syslog supervisor
+
+- name: Kill all supervisord
+  command: killall supervisord
+  ignore_errors: yes
+
+- name: Wait for supervisor to clean up and exit
+  pause: seconds=8
+
+- name: Start supervisord/remote_syslog 
+  command: supervisord -c /etc/supervisor/supervisord.conf
+

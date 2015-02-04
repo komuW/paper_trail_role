@@ -1,0 +1,9 @@
+---
+- name: update main supervisor
+  command: supervisorctl -c /etc/supervisor/supervisord.conf update
+
+- name: update remote_syslog supervisor
+  command: supervisorctl -c /etc/supervisor/conf.d/remote_syslog.conf update
+
+- name: restart remote_syslog
+  command: supervisorctl -c /etc/supervisor/supervisord.conf restart all

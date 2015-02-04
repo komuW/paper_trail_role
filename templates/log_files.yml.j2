@@ -1,0 +1,9 @@
+files:
+{% for log in logfiles %}
+  - log
+{% endfor %}
+
+destination:
+  host: {{ HOST }}
+  port: {{ PORT }}
+  protocol: tls
