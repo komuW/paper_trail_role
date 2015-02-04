@@ -31,7 +31,7 @@
   notify: update main supervisor
 
 - name: Link to remote_syslog specific supervisor configuration
-  template: src=remote_syslog_supervisord.conf.j2 dest=/etc/supervisor/conf.d/remote_syslog.conf
+  template: src=remote_syslog_supervisor.conf.j2 dest=/etc/supervisor/conf.d/remote_syslog.conf
   notify: update remote_syslog supervisor
 
 - name: Kill all supervisord
