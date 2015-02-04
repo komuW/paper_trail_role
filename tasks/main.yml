@@ -26,7 +26,7 @@
 
 - name: Write supervisord.conf
   template: dest=/etc/supervisor/supervisord.conf
-            src=supervisord.conf.j2
+            src=supervisor.conf.j2
             backup=yes
   notify: update main supervisor
 
