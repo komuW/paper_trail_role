@@ -5,13 +5,13 @@
     - supervisor
     #- add more packages here
 
-- name: get remote_syslog2 file
+- name: get remote_syslog2 file 32bit
   shell: wget --directory-prefix=/tmp {{ remote_syslog2_32bit }}
   when: 32bitmachine
 
-- name: get remote_syslog2 file
+- name: get remote_syslog2 file 64 bit
   shell: wget --directory-prefix=/tmp {{ remote_syslog2_64bit }}
-  when: not 32bitmachine
+  when: 64bitmachine
 
 - name: untar the remote_syslog
   shell: tar xzf ./remote_syslog*.tar.gz chdir=/tmp

@@ -5,6 +5,11 @@ remote_syslog2_64bit: "https://github.com/papertrail/remote_syslog2/releases/dow
 # if installing on a 32bit machine, set this to true. else false
 32bitmachine: false
 
+# if installing on a 64bit machine, set this to true. else false
+64bitmachine: true
+
+#NB: only one of 32bitmachine or 64bitmachine variables should be set to true
+
 # add your credentials from papertrail, in here
 HOST: logs.papertrailapp.com
 PORT: 514
